@@ -1,0 +1,97 @@
+#!/bin/bash
+
+## Description: Share TYPO3 site via ngrok with automatic BASE_DOMAIN management
+## Usage: share-typo3
+## Example: "ddev share-typo3"
+## Requires: Free ngrok account with reserved domain configured in ngrok_args
+
+set -e
+
+# Get the ngrok domain from config.yaml
+NGROK_DOMAIN=$(ddev config | grep "ngrok_args:" | sed -n 's/.*--domain[= ]\+\([^ ]*\).*/\1/p' | tr -d '"'"'")
+
+if [ -z "$NGROK_DOMAIN" ]; then
+    echo "❌ Error: No ngrok domain found in .ddev/config.yaml"
+    echo ""
+    echo "To fix this:"
+    echo "  1. Sign up for free ngrok account at https://ngrok.com"
+    echo "  2. Reserve a static domain (e.g., my-project.ngrok-free.app)"
+    echo "  3. Add to .ddev/config.yaml:"
+    echo '     ngrok_args: "--domain your-reserved-name.ngrok-free.app"'
+    echo ""
+    exit 1
+fi
+
+# Get current BASE_DOMAIN or derive from primary URL
+CURRENT_DOMAIN=$(grep "^BASE_DOMAIN=" .ddev/.env 2>/dev/null | cut -d= -f2 || true)
+if [ -z "$CURRENT_DOMAIN" ]; then
+    CURRENT_DOMAIN=$(ddev describe -j | jq -r '.raw.primary_url' | sed 's|https\?://||' | sed 's|/$||')
+fi
+
+# Save current domain for restoration
+echo "$CURRENT_DOMAIN" > .ddev/.env.share-backup
+
+echo "🔄 Switching to ngrok domain: ${NGROK_DOMAIN}"
+echo "   (Current domain: ${CURRENT_DOMAIN})"
+
+# Update BASE_DOMAIN to ngrok domain
+if [ -f .ddev/.env ]; then
+    # Update existing .env
+    if grep -q "^BASE_DOMAIN=" .ddev/.env; then
+        sed -i.bak "s|^BASE_DOMAIN=.*|BASE_DOMAIN=${NGROK_DOMAIN}|" .ddev/.env
+        rm -f .ddev/.env.bak
+    else
+        echo "BASE_DOMAIN=${NGROK_DOMAIN}" >> .ddev/.env
+    fi
+else
+    # Create new .env
+    echo "BASE_DOMAIN=${NGROK_DOMAIN}" > .ddev/.env
+fi
+
+echo "🔄 Restarting DDEV to apply domain change..."
+ddev restart
+
+echo ""
+echo "╔════════════════════════════════════════════════════════"
+echo "║ Starting ngrok tunnel..."
+echo "║ Your TYPO3 site will be accessible at:"
+echo "║ https://${NGROK_DOMAIN}"
+echo "╚════════════════════════════════════════════════════════"
+echo ""
+echo "Press Ctrl-C to stop sharing and restore local domain"
+echo ""
+
+# Cleanup function to restore domain
+cleanup() {
+    echo ""
+    echo "🔄 Stopping share and restoring local domain..."
+
+    if [ -f .ddev/.env.share-backup ]; then
+        RESTORE_DOMAIN=$(cat .ddev/.env.share-backup)
+
+        if [ -f .ddev/.env ]; then
+            if grep -q "^BASE_DOMAIN=" .ddev/.env; then
+                sed -i.bak "s|^BASE_DOMAIN=.*|BASE_DOMAIN=${RESTORE_DOMAIN}|" .ddev/.env
+                rm -f .ddev/.env.bak
+            else
+                echo "BASE_DOMAIN=${RESTORE_DOMAIN}" >> .ddev/.env
+            fi
+        else
+            echo "BASE_DOMAIN=${RESTORE_DOMAIN}" > .ddev/.env
+        fi
+
+        rm -f .ddev/.env.share-backup
+
+        echo "🔄 Restarting DDEV..."
+        ddev restart
+        echo "✅ Restored to: ${RESTORE_DOMAIN}"
+    fi
+}
+
+# Set trap to cleanup on exit
+trap cleanup EXIT INT TERM
+
+# Start ngrok sharing
+ddev share
+
+# Cleanup will run automatically via trap
