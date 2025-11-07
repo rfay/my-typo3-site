@@ -1,4 +1,8 @@
-base: 'https://%env(BASE_DOMAIN)%/testit/'
+base: 'https://my-typo3-site.ddev.site/'
+baseVariants:
+  -
+    base: 'https://nonportentously-caulicolous-cedrick.ngrok-free.dev/'
+    condition: 'host == "nonportentously-caulicolous-cedrick.ngrok-free.dev"'
 languages:
   -
     title: English

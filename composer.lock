@@ -4,8 +4,53 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9eeac54e13d400c156304cad4b09a048",
+    "content-hash": "780d278506707d6810b40a8d90d77e6f",
     "packages": [
+        {
+            "name": "b13/host-variants",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/b13/host_variants.git",
+                "reference": "e71be4ef91fd16a4f0eabed33c6f08d9b5ecfc65"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/b13/host_variants/zipball/e71be4ef91fd16a4f0eabed33c6f08d9b5ecfc65",
+                "reference": "e71be4ef91fd16a4f0eabed33c6f08d9b5ecfc65",
+                "shasum": ""
+            },
+            "require": {
+                "typo3/cms-core": "^11.4 || ^12.0.0 || ^13.0.0"
+            },
+            "type": "typo3-cms-extension",
+            "extra": {
+                "typo3/cms": {
+                    "extension-key": "host_variants"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "B13\\HostVariants\\": "Classes"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Goerz",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Extends the base variants condition with current host.",
+            "support": {
+                "issues": "https://github.com/b13/host_variants/issues",
+                "source": "https://github.com/b13/host_variants/tree/1.3.0"
+            },
+            "time": "2024-11-01T09:13:30+00:00"
+        },
         {
             "name": "bacon/bacon-qr-code",
             "version": "v3.0.1",
