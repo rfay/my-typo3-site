@@ -1,4 +1,4 @@
-base: 'https://%env(BASE_DOMAIN)%/'
+base: 'https://my-typo3-site.ddev.site'
 errorHandling: {  }
 languages:
   -

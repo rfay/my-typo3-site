@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9a59150afa7bb483c5a3c2cb884bf913",
+    "content-hash": "9eeac54e13d400c156304cad4b09a048",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1311,77 +1311,6 @@
                 "source": "https://github.com/lolli42/FineDiff/tree/1.1.1"
             },
             "time": "2024-07-09T14:25:40+00:00"
-        },
-        {
-            "name": "macopedia/typo3-interactive-tour",
-            "version": "v1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/macopedia/typo3-interactive-tour.git",
-                "reference": "2a58183c16ba19f0be032bd3a0a9834bab31ea4b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/macopedia/typo3-interactive-tour/zipball/2a58183c16ba19f0be032bd3a0a9834bab31ea4b",
-                "reference": "2a58183c16ba19f0be032bd3a0a9834bab31ea4b",
-                "shasum": ""
-            },
-            "require": {
-                "symfony/http-foundation": "*",
-                "typo3/cms-lowlevel": "^13",
-                "typo3/cms-setup": "^13"
-            },
-            "conflict": {
-                "typo3/cms-core": "<13"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3",
-                "roave/security-advisories": "dev-latest"
-            },
-            "type": "typo3-cms-extension",
-            "extra": {
-                "typo3/cms": {
-                    "extension-key": "typo3_interactive_tour"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Macopedia\\Typo3InteractiveTour\\": "Classes"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Marcin Sągol",
-                    "email": "m.sagol@macopedia.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Mateusz Gdula",
-                    "email": "m.gdula@macopedia.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "An interactive tour through the TYPO3 backend.",
-            "keywords": [
-                "backend",
-                "cms",
-                "guide",
-                "interactive",
-                "modules",
-                "tour",
-                "tutorial",
-                "typo3",
-                "walkthrough"
-            ],
-            "support": {
-                "issues": "https://github.com/macopedia/typo3-interactive-tour/issues",
-                "source": "https://github.com/macopedia/typo3-interactive-tour/tree/v1.0.2"
-            },
-            "time": "2025-06-17T09:57:27+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -6742,64 +6671,6 @@
                 "source": "https://github.com/FriendsOfTYPO3/introduction"
             },
             "time": "2024-10-14T18:16:15+00:00"
-        },
-        {
-            "name": "typo3/cms-lowlevel",
-            "version": "v13.4.19",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/TYPO3-CMS/lowlevel.git",
-                "reference": "523d74faac44608769951a255aad3ef79fc660fb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/TYPO3-CMS/lowlevel/zipball/523d74faac44608769951a255aad3ef79fc660fb",
-                "reference": "523d74faac44608769951a255aad3ef79fc660fb",
-                "shasum": ""
-            },
-            "require": {
-                "typo3/cms-core": "13.4.19"
-            },
-            "conflict": {
-                "typo3/cms": "*"
-            },
-            "type": "typo3-cms-framework",
-            "extra": {
-                "typo3/cms": {
-                    "Package": {
-                        "partOfFactoryDefault": true
-                    },
-                    "extension-key": "lowlevel"
-                },
-                "branch-alias": {
-                    "dev-main": "13.4.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "TYPO3\\CMS\\Lowlevel\\": "Classes/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "TYPO3 Core Team",
-                    "email": "typo3cms@typo3.org",
-                    "role": "Developer"
-                }
-            ],
-            "description": "TYPO3 CMS Lowlevel - Technical analysis of the system. This includes raw database search, checking relations, counting pages and records etc.",
-            "homepage": "https://typo3.org",
-            "support": {
-                "chat": "https://typo3.org/help",
-                "docs": "https://docs.typo3.org",
-                "issues": "https://forge.typo3.org",
-                "source": "https://github.com/typo3/typo3"
-            },
-            "time": "2025-10-14T10:53:30+00:00"
         },
         {
             "name": "typo3/cms-reactions",
